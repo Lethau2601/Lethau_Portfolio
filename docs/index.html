@@ -63,6 +63,7 @@
             display: flex;
             gap: 40px;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -90,6 +91,41 @@
 
         .contact-btn:hover {
             background: #00cc6a;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #00ff88;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
         }
 
         .container {
@@ -449,6 +485,10 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .status-badge {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -463,6 +503,12 @@
             <ul class="nav-links">
                 <li><a href="#home" class="active">HOME</a></li>
                 <li><a href="#work">WORK</a></li>
+                <li>
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span>Active to Work</span>
+                    </div>
+                </li>
                 <li><a href="#contact" class="contact-btn">CONTACT</a></li>
             </ul>
         </div>
@@ -558,7 +604,7 @@
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/sneaker.png" alt="Sneaker Shop" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-image\'>👟</div>'">
+                            <img src="images/sneaker.jpg" alt="Sneaker Shop" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-image\'>👟</div>'">
                         </div>
                         <div class="project-content">
                             <div class="tech-stack">
