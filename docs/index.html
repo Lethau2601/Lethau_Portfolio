@@ -27,6 +27,19 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,25
 .links .cta{background:var(--navy);color:#fff;padding:9px 18px;border-radius:6px}
 .links .cta:hover{background:var(--blue);color:#fff}
 
+.menu{display:none;background:var(--white);border:1.5px solid var(--line);border-radius:8px;width:44px;height:44px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.menu span{display:block;width:20px;height:2px;background:var(--navy);border-radius:2px;transition:transform .2s,opacity .2s}
+.menu[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:760px){
+ .menu{display:flex}
+ .links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--white);border-bottom:1px solid var(--line);padding:6px 28px 20px;box-shadow:0 18px 30px rgba(11,31,77,.12)}
+ .links.open{display:flex}
+ .links a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-size:1rem;color:var(--navy)}
+ .links .cta{margin-top:16px;text-align:center;border-bottom:0;padding:13px 18px;color:#fff}
+}
+
 /* hero */
 .hero{padding:132px 0 84px;background:linear-gradient(180deg,var(--grey) 0,var(--white) 100%)}
 .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:64px;align-items:center}
@@ -47,7 +60,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,25
 .photo::before{content:"";position:absolute;inset:18px -18px -18px 18px;background:var(--navy);border-radius:14px}
 .photo::after{content:"";position:absolute;inset:0;border:2px solid var(--blue);border-radius:14px;transform:translate(-10px,-10px);pointer-events:none}
 .photo .frame{position:relative;z-index:1;width:100%;height:100%;border-radius:14px;overflow:hidden;background:var(--sky);display:flex;align-items:center;justify-content:center}
-.photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center 88%;display:block}
 .photo .ini{font-family:'Source Serif 4',serif;font-size:5rem;font-weight:700;color:var(--navy)}
 
 /* facts bar */
@@ -66,7 +79,7 @@ section{padding:84px 0}
 .head p{color:var(--mute)}
 
 /* skills */
-.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .skill{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:24px}
 .skill h3{font-family:'Manrope',sans-serif;font-size:.98rem;font-weight:800;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--blue);display:inline-block}
 .skill ul{list-style:none}
@@ -128,7 +141,6 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
  .edu{grid-template-columns:1fr}
 }
 @media(max-width:640px){
- .links li:not(:last-child){display:none}
  .skills{grid-template-columns:1fr}
  section{padding:64px 0}
  .hero{padding-top:104px}
@@ -141,7 +153,8 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
 <header>
  <div class="wrap nav">
   <a class="brand" href="#top">Khotso Lethau Thokwane</a>
-  <ul class="links">
+  <button class="menu" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+  <ul class="links" id="navlinks">
    <li><a href="#skills">Skills</a></li>
    <li><a href="#experience">Experience</a></li>
    <li><a href="#projects">Projects</a></li>
@@ -158,7 +171,7 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
    <div class="status"><i></i>Open to graduate and junior developer roles</div>
    <h1>Khotso Lethau Thokwane</h1>
    <div class="role">Graduate Software Developer | Java and Full-Stack</div>
-   <p class="lead">I build secure, database-driven web applications with <strong>Java, Spring Boot, React and Node.js</strong>. I completed a Diploma in Computer Science at Tshwane University of Technology and have worked in teams through a WIL programme and a second internship, using Git, Agile and CI/CD with GitHub Actions.</p>
+   <p class="lead">I build secure, database-driven web applications with <strong>Java, Spring Boot, React, Node.js and Flutter</strong>. I completed a Diploma in Computer Science at Tshwane University of Technology and have worked in teams through a WIL programme and a second internship, using Git, Agile and CI/CD with GitHub Actions.</p>
    <div class="btns">
     <a class="btn btn-p" href="#projects">View my projects</a>
     <a class="btn btn-o" href="Khotso_Thokwane_Resume.pdf" download>Download CV</a>
@@ -173,7 +186,7 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
   </div>
   <div class="photo">
    <div class="frame">
-    <img src="images/profile.jpg" alt="Portrait of Khotso Lethau Thokwane" onerror="this.remove()">
+    <img src="images/IMG_20260522_120646.jpg" alt="Portrait of Khotso Lethau Thokwane" onerror="this.remove()">
     <span class="ini" aria-hidden="true" style="position:absolute;z-index:-1">KT</span>
    </div>
   </div>
@@ -196,19 +209,28 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
    <div class="skill"><h3>Languages</h3><ul>
     <li><i class="devicon-java-plain colored"></i>Java</li>
     <li><i class="devicon-javascript-plain colored"></i>JavaScript</li>
+    <li><i class="devicon-dart-plain colored"></i>Dart</li>
     <li><i class="devicon-oracle-original colored"></i>SQL and PL/SQL</li></ul></div>
    <div class="skill"><h3>Backend</h3><ul>
     <li><i class="devicon-spring-plain colored"></i>Spring Boot, Java EE</li>
     <li><i class="devicon-nodejs-plain colored"></i>Node.js, Express.js</li>
     <li><i class="devicon-java-plain colored"></i>REST APIs, JWT, MVC</li></ul></div>
-   <div class="skill"><h3>Frontend</h3><ul>
-    <li><i class="devicon-react-original colored"></i>React.js</li>
-    <li><i class="devicon-html5-plain colored"></i>HTML5, JSP</li>
-    <li><i class="devicon-css3-plain colored"></i>CSS3, responsive design</li></ul></div>
-   <div class="skill"><h3>Data and tools</h3><ul>
+   <div class="skill"><h3>Frontend and mobile</h3><ul>
+    <li><i class="devicon-react-original colored"></i>React.js, React Native (Expo)</li>
+    <li><i class="devicon-flutter-plain colored"></i>Flutter (Dart)</li>
+    <li><i class="devicon-html5-plain colored"></i>HTML5, CSS3, JSP</li></ul></div>
+   <div class="skill"><h3>Databases</h3><ul>
     <li><i class="devicon-postgresql-plain colored"></i>PostgreSQL, Supabase</li>
-    <li><i class="devicon-mysql-plain colored"></i>MySQL, Oracle</li>
-    <li><i class="devicon-github-original"></i>Git, GitHub Actions</li></ul></div>
+    <li><i class="devicon-mysql-plain colored"></i>MySQL</li>
+    <li><i class="devicon-oracle-original colored"></i>Oracle</li></ul></div>
+   <div class="skill"><h3>DevOps and practices</h3><ul>
+    <li><i class="devicon-git-plain colored"></i>Git, GitHub</li>
+    <li><i class="devicon-github-original"></i>GitHub Actions (CI/CD)</li>
+    <li><i class="devicon-java-plain colored"></i>OOP, SDLC, Agile</li></ul></div>
+   <div class="skill"><h3>IDEs</h3><ul>
+    <li><i class="devicon-vscode-plain colored"></i>VS Code</li>
+    <li><i class="devicon-intellij-plain colored"></i>IntelliJ IDEA</li>
+    <li><i class="devicon-netbeans-plain colored"></i>NetBeans</li></ul></div>
   </div>
  </div>
 </section>
@@ -236,8 +258,10 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
      <span class="when">Apr 2026 to Jul 2026</span>
     </div>
     <ul>
-     <li>Developed backend systems with Node.js and Express.js.</li>
+     <li>Worked on the Gav Liquor App, a multi-role ordering platform with admin, salesperson, customer and driver apps.</li>
+     <li>Built mobile app features with Flutter (Dart) and React Native (Expo), connected to the backend through REST APIs.</li>
      <li>Integrated REST APIs with PostgreSQL and Supabase database operations.</li>
+     <li>Tested the full order flow across roles, from customer order to salesperson acceptance, driver job and status updates, including logins, data loading and device permissions.</li>
      <li>Took part in debugging, testing, peer code reviews and automated CI/CD pipelines via GitHub Actions.</li>
      <li>Applied SQL optimisation techniques to improve query performance.</li>
     </ul>
@@ -320,5 +344,14 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
 </main>
 
 <footer><div class="wrap">&copy; 2026 Khotso Lethau Thokwane. Graduate Software Developer, Gauteng, South Africa.</div></footer>
+<script>
+(function(){
+ var b=document.getElementById('menu'),l=document.getElementById('navlinks');
+ function set(o){l.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu')}
+ b.addEventListener('click',function(){set(!l.classList.contains('open'))});
+ l.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
+</script>
 </body>
 </html>
