@@ -130,6 +130,23 @@ section{padding:84px 0}
 .contact .btn-o{border-color:rgba(255,255,255,.5);color:#fff}.contact .btn-o:hover{background:#fff;color:var(--navy)}
 footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-size:.84rem}
 
+
+/* progress + marquee + reveal */
+#bar{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#7AA2FF);transform:scaleX(0);transform-origin:0 50%;z-index:60}
+.marquee{overflow:hidden;background:var(--white);border-bottom:1px solid var(--line);padding:26px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:48px;width:max-content;animation:slide 38s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.t{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem;color:var(--navy);white-space:nowrap}
+.t i{font-size:1.9rem}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.photo{animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.proj,.skill,.job,.card{transition:opacity .7s ease,transform .45s ease,border-color .25s,box-shadow .25s}
+.skill:hover,.job:hover,.card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(11,31,77,.09);border-color:var(--blue)}
+@media(prefers-reduced-motion:reduce){.track,.photo{animation:none}.marquee{overflow-x:auto}.rv{opacity:1;transform:none}}
+
 @media(max-width:900px){
  .hero-grid{grid-template-columns:1fr;gap:56px}
  .photo{order:-1}
@@ -150,6 +167,7 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
 </head>
 <body>
 
+<div id="bar" aria-hidden="true"></div>
 <header>
  <div class="wrap nav">
   <a class="brand" href="#top">Khotso Lethau Thokwane</a>
@@ -171,7 +189,7 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
    <div class="status"><i></i>Open to graduate and junior developer roles</div>
    <h1>Khotso Lethau Thokwane</h1>
    <div class="role">Graduate Software Developer | Java and Full-Stack</div>
-   <p class="lead">I build secure, database-driven web applications with <strong>Java, Spring Boot, React, Node.js and Flutter</strong>. I completed a Diploma in Computer Science at Tshwane University of Technology and have worked in teams through a WIL programme and a second internship, using Git, Agile and CI/CD with GitHub Actions.</p>
+   <p class="lead">I build secure, database-driven web applications with <strong>Java, Spring Boot, React, Node.js and Flutter</strong>. I studied Computer Science at Tshwane University of Technology and have worked in teams through a WIL programme and a second internship, using Git, Agile and CI/CD with GitHub Actions.</p>
    <div class="btns">
     <a class="btn btn-p" href="#projects">View my projects</a>
     <a class="btn btn-o" href="Khotso_Thokwane_Resume.pdf" download>Download CV</a>
@@ -195,12 +213,14 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
 
 <div class="facts">
  <div class="wrap facts-grid">
-  <div class="fact"><b>Diploma in Computer Science</b><span>Tshwane University of Technology, 2026</span></div>
+  <div class="fact"><b>Computer Science</b><span>Tshwane University of Technology, 2026</span></div>
   <div class="fact"><b>2 internships</b><span>Investhood IT and Ground Up Grinders</span></div>
   <div class="fact"><b>4 full-stack projects</b><span>Booking, AI, analytics and e-commerce</span></div>
   <div class="fact"><b>CI/CD with GitHub Actions</b><span>Used in both internships</span></div>
  </div>
 </div>
+
+<div class="marquee" aria-label="Technologies I work with"><div class="track" id="track"><span class="t"><i class="devicon-java-plain colored"></i>Java</span><span class="t"><i class="devicon-spring-plain colored"></i>Spring Boot</span><span class="t"><i class="devicon-javascript-plain colored"></i>JavaScript</span><span class="t"><i class="devicon-react-original colored"></i>React</span><span class="t"><i class="devicon-nodejs-plain colored"></i>Node.js</span><span class="t"><i class="devicon-flutter-plain colored"></i>Flutter</span><span class="t"><i class="devicon-dart-plain colored"></i>Dart</span><span class="t"><i class="devicon-postgresql-plain colored"></i>PostgreSQL</span><span class="t"><i class="devicon-mysql-plain colored"></i>MySQL</span><span class="t"><i class="devicon-oracle-original colored"></i>Oracle</span><span class="t"><i class="devicon-html5-plain colored"></i>HTML5</span><span class="t"><i class="devicon-css3-plain colored"></i>CSS3</span><span class="t"><i class="devicon-git-plain colored"></i>Git</span><span class="t"><i class="devicon-github-original colored"></i>GitHub</span><span class="t"><i class="devicon-vscode-plain colored"></i>VS Code</span><span class="t"><i class="devicon-intellij-plain colored"></i>IntelliJ IDEA</span><span class="t"><i class="devicon-netbeans-plain colored"></i>NetBeans</span></div></div>
 
 <section id="skills">
  <div class="wrap">
@@ -323,7 +343,7 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
  <div class="wrap">
   <div class="head"><h2>Education</h2></div>
   <div class="edu">
-   <div class="card"><h3>Diploma in Computer Science</h3><p>Tshwane University of Technology (TUT), South Africa</p><span class="when">Completed May 2026</span></div>
+   <div class="card"><h3>Computer Science</h3><p>Tshwane University of Technology (TUT), South Africa</p><span class="when">Completed May 2026</span></div>
    <div class="card"><h3>National Senior Certificate (Matric)</h3><p>Kgahlanamorulana Secondary School, South Africa</p><span class="when">Completed December 2020</span></div>
   </div>
  </div>
@@ -351,6 +371,18 @@ footer{background:#071535;color:#8FA0C8;text-align:center;padding:22px 0;font-si
  b.addEventListener('click',function(){set(!l.classList.contains('open'))});
  l.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});
  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
+</script>
+<script>
+(function(){
+ var t=document.getElementById('track');t.innerHTML+=t.innerHTML;
+ var bar=document.getElementById('bar');
+ function prog(){var h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?scrollY/h:0)+')'}
+ addEventListener('scroll',prog,{passive:true});prog();
+ var els=document.querySelectorAll('.head,.skill,.job,.proj,.card,.fact');
+ if(!('IntersectionObserver' in window))return;
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+ els.forEach(function(el,i){el.classList.add('rv');el.style.transitionDelay=(i%3)*.08+'s';io.observe(el)});
 })();
 </script>
 </body>
